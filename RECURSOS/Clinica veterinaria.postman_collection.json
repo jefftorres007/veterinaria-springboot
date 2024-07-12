@@ -1,0 +1,295 @@
+{
+	"info": {
+		"_postman_id": "bf004a92-2cce-4c93-a734-67fe6996863c",
+		"name": "Clinica veterinaria",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28110504"
+	},
+	"item": [
+		{
+			"name": "Ingresos",
+			"item": [
+				{
+					"name": "Ingresos obtener",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8090/ingreso",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"ingreso"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ingreso obtener",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8090/ingreso/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"ingreso",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ingreso nuevo",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"fechaAltaIngreso\": \"2024-07-10T14:49:54\",\r\n  \"mascotaId\":1\r\n\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8090/ingreso",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"ingreso"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ingreso modificar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"fechaAltaIngreso\": \"2024-07-10T14:49:54\",\r\n  \"fechaFinalizacionIngreso\": null,\r\n  \"estado\": \"ANULADO\",\r\n  \"dniPersonaRegistro\":\"b30330104\",\r\n  \"mascota\": {\r\n        \"id\": 1,\r\n        \"especie\": \"canino\",\r\n        \"raza\": \"salchicha\",\r\n        \"edad\": 2,\r\n        \"codigoIdentificacion\": \"X001\",\r\n        \"dniResponsable\": \"b30330104\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8090/ingreso/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"ingreso",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ingreso eliminar",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/ingreso/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"ingreso",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Mascotas",
+			"item": [
+				{
+					"name": "Mascotas obtener",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/mascota",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"mascota"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mascota ingresos obtener",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/mascota",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"mascota"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mascota obtener",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/mascota/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"mascota",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mascota nuevo",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"especie\": \"canino\",\r\n  \"raza\": \"salchicha\",\r\n  \"edad\": 2,\r\n  \"codigoIdentificacion\": \"X001\",\r\n  \"dniResponsable\": \"b30330104\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8090/mascota",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"mascota"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mascota modificar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"especie\": \"caninoo\",\r\n  \"raza\": \"salchichaa\",\r\n  \"edad\": 20,\r\n  \"codigoIdentificacion\": \"X0011\",\r\n  \"dniResponsable\": \"b3033010444\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8090/mascota/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"mascota",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mascota eliminar",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/mascota/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"mascota",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
