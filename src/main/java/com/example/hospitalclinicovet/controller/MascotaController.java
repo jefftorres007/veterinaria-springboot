@@ -2,7 +2,6 @@ package com.example.hospitalclinicovet.controller;
 
 import com.example.hospitalclinicovet.model.Ingreso;
 import com.example.hospitalclinicovet.model.Mascota;
-import com.example.hospitalclinicovet.service.IngresoServiceImpl;
 import com.example.hospitalclinicovet.service.MascotaService;
 import com.example.hospitalclinicovet.service.IngresoService;
 import org.springframework.beans.factory.annotation.Autowired;

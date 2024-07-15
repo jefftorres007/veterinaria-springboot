@@ -23,13 +23,13 @@ public class Mascota {
     public Mascota() {
     }
 
-    public Mascota(String especie, String raza, int edad, String codigoIdentificacion, String dniResponsable) {
+    public Mascota(String especie, String raza, int edad, String codigoIdentificacion, String dniResponsable,boolean activa) {
         this.especie = especie;
         this.raza = raza;
         this.edad = edad;
         this.codigoIdentificacion = codigoIdentificacion;
         this.dniResponsable = dniResponsable;
-        this.activa = true;
+        this.activa = activa;
     }
 
     // Getters y Setters
@@ -37,7 +37,9 @@ public class Mascota {
         return id;
     }
 
-
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getEspecie() {
         return especie;

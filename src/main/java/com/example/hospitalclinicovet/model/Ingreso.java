@@ -42,6 +42,10 @@ public class Ingreso {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public LocalDateTime getFechaAltaIngreso() {
         return fechaAltaIngreso;
     }
@@ -81,4 +85,5 @@ public class Ingreso {
     public void setMascota(Mascota mascota) {
         this.mascota = mascota;
     }
+
 }

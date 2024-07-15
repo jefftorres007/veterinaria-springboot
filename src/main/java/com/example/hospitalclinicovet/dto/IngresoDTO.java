@@ -1,13 +1,18 @@
 package com.example.hospitalclinicovet.dto;
 
+import com.example.hospitalclinicovet.model.enu.EstadoIngreso;
+
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import java.time.LocalDateTime;
 
 public class IngresoDTO {
     private Long mascotaId;
     private LocalDateTime fechaAltaIngreso;
     private LocalDateTime fechaFinalizacionIngreso;
-    private String dniPersonaRegistro;
-
+    private String dniPersonaIngreso;
+    @Enumerated(EnumType.STRING)
+    private EstadoIngreso estado;
 
     // Getters y Setters
     public Long getMascotaId() {
@@ -26,12 +31,12 @@ public class IngresoDTO {
         this.fechaAltaIngreso = fechaAltaIngreso;
     }
 
-    public String getDniPersonaRegistro() {
-        return dniPersonaRegistro;
+    public String getDniPersonaIngreso() {
+        return dniPersonaIngreso;
     }
 
-    public void setDniPersonaRegistro(String dniPersonaRegistro) {
-        this.dniPersonaRegistro = dniPersonaRegistro;
+    public void setDniPersonaIngreso(String dniPersonaIngreso) {
+        this.dniPersonaIngreso = dniPersonaIngreso;
     }
 
     public LocalDateTime getFechaFinalizacionIngreso() {
@@ -40,5 +45,13 @@ public class IngresoDTO {
 
     public void setFechaFinalizacionIngreso(LocalDateTime fechaFinalizacionIngreso) {
         this.fechaFinalizacionIngreso = fechaFinalizacionIngreso;
+    }
+
+    public EstadoIngreso getEstado() {
+        return estado;
+    }
+
+    public void setEstado(EstadoIngreso estado) {
+        this.estado = estado;
     }
 }

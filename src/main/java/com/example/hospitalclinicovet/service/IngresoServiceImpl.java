@@ -58,14 +58,14 @@ public class IngresoServiceImpl implements IngresoService {
             throw new VeterinariaException("Mascota no encontrada");
         }if (!mascotaOptional.get().getActiva()) {
             throw new VeterinariaException("Mascota no activa, no se puede crear el ingreso");
-        }if (!ingresoDTO.getDniPersonaRegistro().equalsIgnoreCase(mascotaOptional.get().getDniResponsable())){
+        }if (!ingresoDTO.getDniPersonaIngreso().equalsIgnoreCase(mascotaOptional.get().getDniResponsable())){
             throw new VeterinariaException("Documento del responsable de la mascota no correponde con el documento proporcionado");
         }
 
 
         Ingreso ingreso = new Ingreso();
         ingreso.setMascota(mascotaOptional.get());
-        ingreso.setDniPersonaRegistro(ingresoDTO.getDniPersonaRegistro());
+        ingreso.setDniPersonaRegistro(ingresoDTO.getDniPersonaIngreso());
         ingreso.setFechaAltaIngreso(ingresoDTO.getFechaAltaIngreso());
         ingreso.setEstado(EstadoIngreso.ALTA);
         return ingresoRepository.save(ingreso);

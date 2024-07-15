@@ -20,6 +20,7 @@ import java.util.Optional;
 public class IngresoController {
     @Autowired
     private IngresoService ingresoService;
+    @Autowired
     private MascotaService mascotaService;
 
     @GetMapping
@@ -43,27 +44,31 @@ public class IngresoController {
         return ResponseEntity.ok(nuevoIngreso);
     }
 
-    @PutMapping("/{idMascota}/{idIngreso}")
-    public ResponseEntity<Ingreso> finalizaIngreso(@PathVariable Long idMascota, @PathVariable Long idIngreso, @RequestBody IngresoDTO ingresoDetails) {
+    @PutMapping("/{idIngreso}")
+    public ResponseEntity<Ingreso> finalizaIngreso(@PathVariable Long idIngreso, @RequestBody IngresoDTO ingresoDetails) {
         Optional<Ingreso> ingreso = ingresoService.getIngresoById(idIngreso);
-        Optional<Mascota> mascota = mascotaService.getMascotaById(idMascota);
+        Optional<Mascota> mascota = mascotaService.getMascotaById(ingresoDetails.getMascotaId());
 
         //throw new VeterinariaException("aquii");
+        //return ResponseEntity.notFound().build();
 
         // Validaciones
         if (!ingreso.isPresent()) {
             throw new VeterinariaException(MessageFormat.format("Ingreso {0} no encontrado", idIngreso));
         }if (!mascota.isPresent()) {
-            throw new VeterinariaException(MessageFormat.format("Mascota {0} no encontrada", idMascota));
+            throw new VeterinariaException(MessageFormat.format("Mascota {0} no encontrada", ingresoDetails.getMascotaId()));
         }
 
         Ingreso ingresoObj = ingreso.get();
         Mascota mascotaObj = mascota.get();
 
         if (!mascotaObj.getActiva()) {
-            throw new VeterinariaException(MessageFormat.format("La mascota {0} no está activa, no puede finalizar el ingreso",idMascota));
+            throw new VeterinariaException(MessageFormat.format("La mascota {0} no está activa, no puede finalizar el ingreso",mascotaObj.getId()));
         }
-        if (ingresoObj.getEstado() == EstadoIngreso.FINALIZADO) {
+        if (!ingresoDetails.getDniPersonaIngreso().equalsIgnoreCase( mascotaObj.getDniResponsable() )) {
+            throw new VeterinariaException(MessageFormat.format("El documento {0} no corresponde a la mascota {1}",ingresoDetails.getDniPersonaIngreso(),mascotaObj.getDniResponsable()));
+        }
+        if (ingresoDetails.getEstado() == EstadoIngreso.FINALIZADO) {
             if (ingresoDetails.getFechaFinalizacionIngreso() == null) {
                 throw new VeterinariaException("Para finalizar este ingreso debe asignar una fecha de fin del ingreso");
             }
@@ -76,44 +81,22 @@ public class IngresoController {
         return ResponseEntity.ok(updatedIngreso);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Ingreso> updateIngreso(@PathVariable Long id, @RequestBody Ingreso ingresoDetails) {
-        Optional<Ingreso> ingreso = ingresoService.getIngresoById(id);
-
-        // Validaciones
-        if (!ingreso.isPresent()) {
-            throw new VeterinariaException("Ingreso no encontrado");
-        }
-
-        Ingreso ingresoToUpdate = ingreso.get();
-
-        if (!ingresoDetails.getMascota().getActiva()) {
-            throw new VeterinariaException("La mascota indicada no está activa, no puede finalizar el ingreso");
-        }
-        if (ingresoDetails.getEstado() == EstadoIngreso.FINALIZADO) {
-            if (ingresoDetails.getFechaFinalizacionIngreso() == null) {
-                throw new VeterinariaException("Para finalizar este ingreso debe asignar una fecha de fin del ingreso");
-            } else if (ingresoDetails.getFechaFinalizacionIngreso().isBefore(ingresoDetails.getFechaAltaIngreso())) {
-                throw new VeterinariaException("La fecha del fin del ingreso no puede ser anterior a la de registro");
-            }
-        }
-
-        ingresoToUpdate.setFechaAltaIngreso(ingresoDetails.getFechaAltaIngreso());
-        ingresoToUpdate.setFechaFinalizacionIngreso(ingresoDetails.getFechaFinalizacionIngreso());
-        ingresoToUpdate.setEstado(ingresoDetails.getEstado());
-        ingresoToUpdate.setMascota(ingresoDetails.getMascota());
-        ingresoToUpdate.setDniPersonaRegistro(ingresoDetails.getDniPersonaRegistro());
-        Ingreso updatedIngreso = ingresoService.saveIngreso(ingresoToUpdate);
-        return ResponseEntity.ok(updatedIngreso);
-    }
 
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Ingreso> deleteIngreso(@PathVariable Long id) {
         Optional<Ingreso> ingreso = ingresoService.getIngresoById(id);
+
         if (!ingreso.isPresent()) {
             throw new VeterinariaException("Ingreso no encontrado");
         }
+
+        Optional<Mascota> mascota = mascotaService.getMascotaById(ingreso.get().getMascota().getId());
+        Mascota mascotaObj = mascota.get();
+        if (!mascotaObj.getActiva()) {
+            throw new VeterinariaException(MessageFormat.format("La mascota {0} no está activa, no se puede realizar la operación",mascotaObj.getId()));
+        }
+
         ingresoService.bajaIngreso(id);
         return ResponseEntity.ok(ingreso.get());
 
