@@ -10,4 +10,5 @@ public interface MascotaService {
     Optional<Mascota> getMascotaById(Long id);
     Mascota saveMascota(Mascota mascota);
     void deleteMascota(Long id);
+
 }

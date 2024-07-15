@@ -5,7 +5,9 @@ import java.time.LocalDateTime;
 public class IngresoDTO {
     private Long mascotaId;
     private LocalDateTime fechaAltaIngreso;
+    private LocalDateTime fechaFinalizacionIngreso;
     private String dniPersonaRegistro;
+
 
     // Getters y Setters
     public Long getMascotaId() {
@@ -30,5 +32,13 @@ public class IngresoDTO {
 
     public void setDniPersonaRegistro(String dniPersonaRegistro) {
         this.dniPersonaRegistro = dniPersonaRegistro;
+    }
+
+    public LocalDateTime getFechaFinalizacionIngreso() {
+        return fechaFinalizacionIngreso;
+    }
+
+    public void setFechaFinalizacionIngreso(LocalDateTime fechaFinalizacionIngreso) {
+        this.fechaFinalizacionIngreso = fechaFinalizacionIngreso;
     }
 }

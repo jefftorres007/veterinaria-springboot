@@ -79,7 +79,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"fechaAltaIngreso\": \"2024-07-10T14:49:54\",\r\n  \"mascotaId\":1\r\n\r\n}\r\n",
+							"raw": "{\r\n  \"fechaAltaIngreso\": \"2024-07-10T14:49:54\",\r\n  \"mascotaId\":1,\r\n  \"dniPersonaRegistro\":\"b30330104\"\r\n\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -107,7 +107,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"fechaAltaIngreso\": \"2024-07-10T14:49:54\",\r\n  \"fechaFinalizacionIngreso\": null,\r\n  \"estado\": \"ANULADO\",\r\n  \"dniPersonaRegistro\":\"b30330104\",\r\n  \"mascota\": {\r\n        \"id\": 1,\r\n        \"especie\": \"canino\",\r\n        \"raza\": \"salchicha\",\r\n        \"edad\": 2,\r\n        \"codigoIdentificacion\": \"X001\",\r\n        \"dniResponsable\": \"b30330104\"\r\n    }\r\n}",
+							"raw": "{\r\n  \"fechaAltaIngreso\": \"2024-07-10T14:49:54\",\r\n  \"fechaFinalizacionIngreso\": \"2024-07-15T14:49:54\",\r\n  \"estado\": \"FINALIZADO\",\r\n  \"dniPersonaRegistro\":\"b30330104\"\r\n  \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -115,7 +115,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8090/ingreso/4",
+							"raw": "http://localhost:8090/ingreso/1/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -123,7 +123,8 @@
 							"port": "8090",
 							"path": [
 								"ingreso",
-								"4"
+								"1",
+								"1"
 							]
 						}
 					},
@@ -135,7 +136,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8090/ingreso/2",
+							"raw": "http://localhost:8090/ingreso/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -143,7 +144,7 @@
 							"port": "8090",
 							"path": [
 								"ingreso",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -174,19 +175,21 @@
 					"response": []
 				},
 				{
-					"name": "Mascota ingresos obtener",
+					"name": "Mascota, obtener ingresos",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8090/mascota",
+							"raw": "http://localhost:8090/mascota/1/ingreso",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8090",
 							"path": [
-								"mascota"
+								"mascota",
+								"1",
+								"ingreso"
 							]
 						}
 					},
@@ -275,7 +278,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8090/mascota/2",
+							"raw": "http://localhost:8090/mascota/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -283,7 +286,28 @@
 							"port": "8090",
 							"path": [
 								"mascota",
-								"2"
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mascota activar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/mascota/activa/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"mascota",
+								"activa",
+								"1"
 							]
 						}
 					},

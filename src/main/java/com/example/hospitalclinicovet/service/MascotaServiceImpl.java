@@ -33,4 +33,6 @@ public class MascotaServiceImpl implements MascotaService {
     public void deleteMascota(Long id) {
         mascotaRepository.deleteById(id);
     }
+
+
 }

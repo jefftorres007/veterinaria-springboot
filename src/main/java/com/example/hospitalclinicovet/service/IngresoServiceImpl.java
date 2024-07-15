@@ -56,6 +56,8 @@ public class IngresoServiceImpl implements IngresoService {
         //Validaciones
         if (!mascotaOptional.isPresent()) {
             throw new VeterinariaException("Mascota no encontrada");
+        }if (!mascotaOptional.get().getActiva()) {
+            throw new VeterinariaException("Mascota no activa, no se puede crear el ingreso");
         }if (!ingresoDTO.getDniPersonaRegistro().equalsIgnoreCase(mascotaOptional.get().getDniResponsable())){
             throw new VeterinariaException("Documento del responsable de la mascota no correponde con el documento proporcionado");
         }
